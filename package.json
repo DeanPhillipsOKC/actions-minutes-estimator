@@ -1,0 +1,16 @@
+{
+  "name": "actions-minutes-estimator",
+  "version": "0.1.0",
+  "description": "Estimate this month's GitHub Actions minutes from the run list, with an even-pace guard level. Works with a repo token that can't read the billing page.",
+  "type": "module",
+  "main": "src/index.mjs",
+  "exports": { ".": "./src/index.mjs" },
+  "bin": { "actions-minutes-estimator": "bin/cli.mjs" },
+  "files": ["src", "bin", "action.yml", "README.md", "LICENSE"],
+  "scripts": { "test": "node --test \"test/*.test.mjs\"" },
+  "engines": { "node": ">=18" },
+  "license": "MIT",
+  "author": "Dean Phillips",
+  "repository": { "type": "git", "url": "git+https://github.com/DeanPhillipsOKC/actions-minutes-estimator.git" },
+  "keywords": ["github-actions", "billing", "minutes", "budget"]
+}
