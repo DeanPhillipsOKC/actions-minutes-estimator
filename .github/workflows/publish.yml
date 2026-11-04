@@ -1,0 +1,24 @@
+name: Stage release on npm
+# Stages the version in package.json on npm with the stage-only NPM_TOKEN.
+# Nothing goes live until the owner approves it with 2FA (npmjs.com, or
+# `npm stage approve <stage-id> --otp <code>`). Run it from Actions > Stage
+# release on npm > Run workflow after bumping "version" in package.json.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      # npm stage needs npm 11.15.0 or later.
+      - run: npm install -g npm@11.21.1
+      - run: npm test
+      - run: npm stage publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
