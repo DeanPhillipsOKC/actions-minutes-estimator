@@ -57,3 +57,11 @@ GitHub bills per job, each rounded up to a minute, but the run list gives one wa
 ## License
 
 MIT
+
+## Releasing
+
+1. Bump `version` in `package.json` and merge to `main`.
+2. Actions > **Stage release on npm** > Run workflow. It runs the tests and stages the version with the
+   stage-only `NPM_TOKEN`; nothing is public yet.
+3. Approve the staged version on npmjs.com with 2FA, or run `npm stage approve <stage-id> --otp <code>`
+   (`npm stage list` shows the id).
